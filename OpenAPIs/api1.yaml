@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: CJWAPI_V1
+  version: 1.0.0
+servers:
+  - url: /
+
+
+x-wso2-production-endpoints:
+  urls:
+    - 'http://run.mocky.io/v3/'
+  type: http
+x-wso2-sandbox-endpoints:
+  urls:
+    - 'http://run.mocky.io/v3/'
+  type: http
+x-wso2-basePath: /blog/v1
+
+x-wso2-request-interceptor: java:mgw.interceptor.SampleInterceptor
+
+
+paths:
+  /72401357-9446-4251-8a98-09fac1257127:
+    get:
+      responses:
+        '200':
+          description: OK
+   
+      x-throttling-tier: Unlimited
+      security:
+        - ApiKeyAuth: []
+
+
+security:
+  - ApiKeyAuth: []
+
+components:
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header" or "query"
+      name: api_key  # name of the header or query parameter
+    appId:             # you can define several apikey security schemas
+      type: apiKey
+      in: header
+      name: X-APP-ID
+
